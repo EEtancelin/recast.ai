@@ -25,9 +25,12 @@ class User extends React.Component {
       };
   }
 
+  edit = () => this.setState({isEditing:true})
+  submit = () => (null)
+
   onNameInputChange = (e) => this.setState({name: e.target.value})
   onDescriptionInputChange = (e) => this.setState({description: e.target.value})
-  onImgInputChange = (e) => this.setState({imgBatch: e.target.value})
+  onImgInputChange = (e) => this.setState({imgInput: e.target.value})
 
   toggleIsHuman = () => {
     const isHuman= !this.state.isHuman
@@ -38,7 +41,7 @@ class User extends React.Component {
   render () {
     const { name, description, isHuman, isEditing , imgInput} = this.state
     const { img } = this.props.user
-    const { onNameInputChange, onDescriptionInputChange, onImgInputChange,toggleIsHuman } = this
+    const { onNameInputChange, onDescriptionInputChange, onImgInputChange,toggleIsHuman, edit, submit } = this
     // Decide to clearly separate the Logic when the component is edit with an if statement.
     // As logic is very different and it's make the code more readable
     // Drawback ui is design twice
@@ -77,11 +80,16 @@ class User extends React.Component {
               {isHuman? "✓": "" }
           </div>
         </div>
+        <div class="btn blue"
+         onClick={submit}
+        >
+          submit
+        </div>
       </div>)
     } else {
       return(
         <div className="user-card"
-            onClick={this.getClickHandler(() => this.setState({isEditing:true}))}
+            onClick={this.getClickHandler(edit)}
         >
           <img
             className="user-card-img"
@@ -104,6 +112,11 @@ class User extends React.Component {
             >
               {isHuman? "✓": "" }
             </div>
+          </div>
+
+          <div class="btn blue"
+           onClick={edit}
+          >edit
           </div>
         </div>
       )
