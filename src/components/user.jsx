@@ -6,7 +6,7 @@ class User extends React.Component {
   constructor(props){
     super(props);
     this.state = this.props.user
-    this.state.imgBatch = this.props.user.img
+    this.state.imgInput = this.props.user.img
     this.state.isEditing = false
   }
 
@@ -36,7 +36,8 @@ class User extends React.Component {
 
 
   render () {
-    const { name, description, isHuman, img, isEditing, imgBatch } = this.state
+    const { name, description, isHuman, isEditing , imgInput} = this.state
+    const { img } = this.props.user
     const { onNameInputChange, onDescriptionInputChange, onImgInputChange,toggleIsHuman } = this
     // Decide to clearly separate the Logic when the component is edit with an if statement.
     // As logic is very different and it's make the code more readable
@@ -52,7 +53,7 @@ class User extends React.Component {
 
           <input
             className="img-url-input"
-            value={imgBatch}
+            value={imgInput }
             onChange={onImgInputChange}
           ></input>
 
