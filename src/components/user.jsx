@@ -25,8 +25,6 @@ class User extends React.Component {
       };
   }
 
-
-
   onNameInputChange = (e) => this.setState({name: e.target.value})
   onDescriptionInputChange = (e) => this.setState({description: e.target.value})
   onImgInputChange = (e) => this.setState({imgBatch: e.target.value})
@@ -45,8 +43,7 @@ class User extends React.Component {
     // Drawback ui is design twice
       if (isEditing) {
         return (
-      <div className={`user-card ${isEditing ? "is-editing": ""} `}
-        onClick={this.getClickHandler(() => this.setState({isEditing:true}))}
+      <div className="user-card is-editing"
       >
         <img
           className="user-card-img img-is-editing"
@@ -94,13 +91,11 @@ class User extends React.Component {
             <input
               className="user-card-name"
               value={name}
-              onChange={onNameInputChange}
             ></input>
 
             <input
               className="user-card-description"
               value={description}
-              onChange={onDescriptionInputChange}
               ></input>
 
             <div
