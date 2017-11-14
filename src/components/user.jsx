@@ -6,7 +6,7 @@ class User extends React.Component {
   constructor(props){
     super(props);
     this.state = this.props.user
-    this.state.imgInput = this.props.user.img
+    this.state.imgInput = this.props.user.profile.img
     this.state.isEditing = false
   }
 
@@ -29,7 +29,10 @@ class User extends React.Component {
   submit = () => (null)
 
   onNameInputChange = (e) => this.setState({name: e.target.value})
-  onDescriptionInputChange = (e) => this.setState({description: e.target.value})
+  onDescriptionInputChange = (e) => {
+    const profile = delete Object.assign(this.state.profile).desc
+    this.setState({...profile, desc: e.target.value})
+  }
   onImgInputChange = (e) => this.setState({imgInput: e.target.value})
 
   toggleIsHuman = () => {
@@ -40,7 +43,7 @@ class User extends React.Component {
 
   render () {
     const { name, description, isHuman, isEditing , imgInput} = this.state
-    const { img } = this.props.user
+    const {img, desc } = this.state.profile
     const { onNameInputChange, onDescriptionInputChange, onImgInputChange,toggleIsHuman, edit, submit } = this
     // Decide to clearly separate the Logic when the component is edit with an if statement.
     // As logic is very different and it's make the code more readable
@@ -49,6 +52,8 @@ class User extends React.Component {
         return (
       <div className="user-card is-editing"
       >
+      {console.log(this.constructor.name, "Props", this.props)}
+      {console.log(this.constructor.name, "State", this.state)}
         <img
           className="user-card-img img-is-editing"
           src={img}>
@@ -69,7 +74,7 @@ class User extends React.Component {
 
             <input
               className="user-card-description description-is-editing"
-              value={description}
+              value={desc}
               onChange={onDescriptionInputChange}
               ></input>
 
@@ -104,7 +109,7 @@ class User extends React.Component {
 
             <input
               className="user-card-description"
-              value={description}
+              value={desc}
               ></input>
 
             <div

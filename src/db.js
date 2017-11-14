@@ -1,4 +1,4 @@
-export default const users = [
+const users = [
   {
     name: 'Toto',
     profile: {
@@ -32,3 +32,5 @@ export default const users = [
     isHuman: true,
   },
 ]
+
+export default users
