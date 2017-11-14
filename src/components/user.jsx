@@ -52,31 +52,31 @@ class User extends React.Component {
           className="user-card-img img-is-editing"
           src={img}>
         </img>
-        {isEditing ?
+
           <input
             className="img-url-input"
             value={imgBatch}
             onChange={onImgInputChange}
-          ></input>:""}
-        <div className="user-card-content" >
-
-          <input
-            className="user-card-name name-is-editing"
-            value={name}
-            onChange={onNameInputChange}
           ></input>
 
-          <input
-            className="user-card-description description-is-editing"
-            value={description}
-            onChange={onDescriptionInputChange}
+          <div className="user-card-content" >
+            <input
+              className="user-card-name name-is-editing"
+              value={name}
+              onChange={onNameInputChange}
             ></input>
 
-          <div
-            className="user-card-is-human is-human-is-editing"
-            onClick={toggleIsHuman}
-          >
-            {isHuman? "✓": "" }
+            <input
+              className="user-card-description description-is-editing"
+              value={description}
+              onChange={onDescriptionInputChange}
+              ></input>
+
+            <div
+              className="user-card-is-human is-human-is-editing"
+              onClick={toggleIsHuman}
+            >
+              {isHuman? "✓": "" }
           </div>
         </div>
       </div>)
@@ -89,8 +89,8 @@ class User extends React.Component {
             className="user-card-img"
             src={img}>
           </img>
-          <div className="user-card-content" >
 
+          <div className="user-card-content" >
             <input
               className="user-card-name"
               value={name}
