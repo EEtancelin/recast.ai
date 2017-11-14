@@ -12,14 +12,14 @@ class User extends React.Component {
 
   getClickHandler = (onDblClick) => {
       var timeoutID = null;
-      const delay = 100;
+      const delay = 250;
       return function (event) {
           if (!timeoutID) {
               timeoutID = setTimeout(function () {
-                  onDblClick()
                   timeoutID = null
               }, delay);
           } else {
+              onDblClick()
               timeoutID = clearTimeout(timeoutID);
           }
       };
