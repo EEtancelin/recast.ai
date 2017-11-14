@@ -5,7 +5,8 @@ import '../css/user.css';
 class User extends React.Component {
   constructor(props){
     super(props);
-    this.state = this.props.user
+    this.state = {}
+    this.state = Object.assign({...this.props.user})
     this.state.imgInput = this.props.user.profile.img
     this.state.isEditing = false
   }
@@ -26,13 +27,27 @@ class User extends React.Component {
   }
 
   edit = () => this.setState({isEditing:true})
-  submit = () => (null)
+  endEdit = () => this.setState({isEditing:false})
+
+  submit = () => {
+    this.props.submit(this.userFromState(this.state))
+    this.endEdit()
+  }
+
+  userFromState = (state) => ({
+    name: state.name,
+    profile: {desc: state.desc, img: state.imgInput },
+    isHuman: state.isHuman,
+  })
 
   onNameInputChange = (e) => this.setState({name: e.target.value})
+
   onDescriptionInputChange = (e) => {
-    const profile = delete Object.assign(this.state.profile).desc
-    this.setState({...profile, desc: e.target.value})
+    var profile = Object.assign(this.state.profile)
+    delete profile.desc
+    this.setState({profile: {...profile, desc: e.target.value}})
   }
+
   onImgInputChange = (e) => this.setState({imgInput: e.target.value})
 
   toggleIsHuman = () => {
@@ -42,8 +57,9 @@ class User extends React.Component {
 
 
   render () {
-    const { name, description, isHuman, isEditing , imgInput} = this.state
-    const {img, desc } = this.state.profile
+    const {isEditing , imgInput, } = this.state
+    const { name, description, isHuman } = this.state
+    const { img, desc } = this.state.profile
     const { onNameInputChange, onDescriptionInputChange, onImgInputChange,toggleIsHuman, edit, submit } = this
     // Decide to clearly separate the Logic when the component is edit with an if statement.
     // As logic is very different and it's make the code more readable
@@ -52,8 +68,6 @@ class User extends React.Component {
         return (
       <div className="user-card is-editing"
       >
-      {console.log(this.constructor.name, "Props", this.props)}
-      {console.log(this.constructor.name, "State", this.state)}
         <img
           className="user-card-img img-is-editing"
           src={img}>
