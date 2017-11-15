@@ -12,10 +12,7 @@ class UsersList extends React.Component {
   }
 
   setUser = (id, user) => {
-    console.log("chat");
-    console.log(user);
     var usersList = [...this.state.usersList]
-    console.log(this.state.usersList);
     usersList[id] = user
     console.log(usersList);
     this.setState({usersList: [...usersList]})
@@ -23,12 +20,13 @@ class UsersList extends React.Component {
 
   render () {
     var { usersList } = this.state
+    const humanCount = usersList.reduce((acc, val) => val.isHuman ? ++acc : acc, 0)
     return (
-      <div>
-        {console.log(this.constructor.name, "Props", this.props)}
-        {console.log(this.constructor.name, "State", this.state)}
+      <div className="users-list">
+        Human count : {humanCount}
         {usersList.map((user, id) =>
           <User
+            key= {id}
             user={user}
             submit={ (user) => this.setUser(id, user)}
         />
