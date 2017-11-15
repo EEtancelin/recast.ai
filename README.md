@@ -5,8 +5,10 @@ Once again sorry, for the time taken i have just started new mission at Data-Imp
 Was a bit difficult to find time. :-/
 
 To run this project please run these commands
+```shell
 yarn install
 yarn start
+```
 
 Obviously, the code is not as much perfect as i wish, ( it's never as perfect as wish ;-).
 On the good point the code it's pretty clean, readable and straingforward.
